@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+    cloudflared:
+      image: cloudflare/cloudflared:latest
+      container_name: cloudflared
+      restart: unless-stopped
+      command: tunnel run
+      environment:
+        - TUNNEL_TOKEN=eyJhIjoiMjFhYzczNDZjNGEwNTgzMGU4YThkMjI5ZWE4NDhmNzYiLCJ0IjoiMjk5Y2UwNWQtZTE5NS00ZTgxLTlmNWEtZGZiYzcyOGRhY2IxIiwicyI6Ik1HUmpOR05oTldZdE1HSmlOaTAwTlRnekxXSTJNR1l0WVdSbVlqbGlZalJrTTJObSJ9
+        - TZ=Europe/Lisbon
+      security_opt:
+        - no-new-privileges:true
+      network_mode: host
+      extra_hosts:
+        - "host.docker.internal:host-gateway"
+
